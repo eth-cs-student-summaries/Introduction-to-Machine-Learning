@@ -1,0 +1,13 @@
+\section*{Probabilities}
+$\mathbb{E}_x[X] = \begin{cases}
+   \int x \cdot p(x) \partial x  &|\mathbb{E}_x[f(x)] =\\
+   \sum_x x \cdot p(x) &|\int f(x) \cdot p(x) \partial x
+  \end{cases}$\\
+%$\mathbb{E}_x[f(x)] = \int f(x) \cdot p(x) \partial x $\\
+$Var[X] = \mathbb{E}[(X-\mu_X)^2] = \mathbb{E}[X^2] - \mathbb{E}[X]^2$\\
+$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$; $p(Z|X,\theta) = \frac{p(X,Z|\theta)}{p(X|\theta)}$\\
+$P(x,y) = P(x \cap y)= P(y|x) \cdot P(x) = P(x|y) \cdot P(y)$
+
+%\subsection*{Linearity of expectation}
+%$X, Y$ rand. var., $a, b \in \mathbb{R}$:\\
+%$\mathbb{E}_{x,y}[aX + bY] = a\mathbb{E}_x[X] + b \mathbb{E}_y[Y]$

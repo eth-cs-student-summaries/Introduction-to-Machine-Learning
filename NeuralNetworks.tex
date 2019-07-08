@@ -1,0 +1,28 @@
+\subsection*{\hilight{Neural Networks} ~~Learning features}
+
+Parameterize the feature maps and optimize over the parameters:\\
+$w^* = \underset{w, \theta}{\operatorname{argmin}} \sum_{i=1}^n l(y_i; \sum_{j=1}^m w_j \phi(x_i, \theta_j))$\\
+One possibility: $\phi(x,\theta) = \varphi(\theta^T x) = \varphi(z)$
+
+\subsection*{Activation functions}
+Sigmoid: $\varphi(z) = \frac{1}{1+exp(-z)}$;  $\varphi'(z) = (1 - \varphi(z))\cdot\varphi(z)$\\
+Tanh: $\varphi(z) = tanh(z) = \frac{exp(z)-exp(-z)}{exp(z)+exp(-z)}$\\
+ReLu:  $\varphi(z) = max(z,0)$
+
+\subsection*{Forward propagation}
+For each unit $j$ on input layer, set value $v_j=x_j$\\
+For each layer $l=1:L-1$: For each unit $j$ on layer $l$ set its value $v_j = \varphi(\sum_{i\in Layer_{l-1}} w_{j,i}v_i)$
+For each unit $j$ on output layer, set its value $f_j = \sum_{i\in Layer_{L-1}} w_{j,i}v_i$\\
+Predict $y_j = f_j$ for reg. / $y_j = sign(f_j)$ for class.
+
+\subsection*{Backpropagation}
+For each unit $j$ on the output layer:\\
+- Compute error signal: $\delta_j = \ell_j'(f_j)$\\
+- For each unit $i$ on layer $L$: $\frac{\partial}{\partial w_{j,i}} = \delta_j v_i$
+
+For each unit $j$ on hidden layer $l=\{L-1,...,1\}$:\\
+- Error signal: $\delta_j = \varphi'(z_j) \sum_{i\in Layer_{l+1}} w_{i,j}\delta_i$\\
+- For each unit $i$ on layer $l-1$: $\frac{\partial}{\partial w_{j,i}} = \delta_j v_i$
+
+\subsection*{Learning with momentum}
+$a \leftarrow m \cdot a + \eta_t \nabla_W l(W;y,x)$; $W \leftarrow W - a$
