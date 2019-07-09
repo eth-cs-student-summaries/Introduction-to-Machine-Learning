@@ -1,13 +1,5 @@
 \section*{Basics}
 
-\subsection*{Gradient Descent}
-1. Pick arbitrary $w_0 \in \mathbb{R}^d$\\
-2. $w_{t+1} = w_t - \eta_t \nabla \hat{R}(w_t)$
-
-\subsection*{Stochastic Gradient Descent (SGD)}
-1. Pick arbitrary $w_0 \in \mathbb{R}^d$\\
-2. $w_{t+1} = w_t - \eta_t \nabla_w l(w_t;x',y')$, with u.a.r.\\ data point $(x',y') \in D$
-
 \subsection*{Fundamental Assumption}
 Data is iid for unknown $P$: $(x_i, y_i) \sim P(X,Y)$
 
@@ -19,3 +11,17 @@ Est. error: $\hat{R}_D(w) = \frac{1}{|D|}\sum_{(x,y)\in D} (y-w^Tx)^2$
 Centered data with unit variance:
 $\tilde{x}_{i} = \frac{x_{i}-\hat{\mu}}{\hat{\sigma}}$\\
 $\hat{\mu} = \frac{1}{n}\sum_{i=1}^n x_{i}$, $\hat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n {(x_{i}-\hat{\mu})}^2$ 
+
+\subsection*{Parametric vs. Nonparametric}
+\emph{Parametric}: have finite set of parameters. 
+e.g. linear regression, linear perceptron\\
+\emph{Nonparametric}: grow in complexity with the size of the data, more expressive.
+e.g. k-NN
+
+\subsection*{Gradient Descent}
+1. Pick arbitrary $w_0 \in \mathbb{R}^d$\\
+2. $w_{t+1} = w_t - \eta_t \nabla \hat{R}(w_t)$
+
+\subsection*{Stochastic Gradient Descent (SGD)}
+1. Pick arbitrary $w_0 \in \mathbb{R}^d$\\
+2. $w_{t+1} = w_t - \eta_t \nabla_w l(w_t;x',y')$, with u.a.r.\\ data point $(x',y') \in D$

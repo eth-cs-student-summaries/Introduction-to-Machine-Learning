@@ -15,13 +15,10 @@ $\nabla_w l_P(w;y_i,x_i) =
 Data lin. separable $\Rightarrow$ obtains a lin. separator
 
 \subsection*{Support Vector Machine (SVM)}
-Use hinge loss: $l_H(w;x,y) = \operatorname{max}(0,1-y w^T x)$ \\
-$\nabla_w l_H(w;y_i,x_i) = 
+Hinge loss: $l_H(w;x_i,y_i) = \operatorname{max}(0,1-y_i w^T x_i)$ \\
+$\nabla_w l_H(w;y,x) = 
 \begin{cases}
-    0 &\text{if } y_i w^T x_i \geq 1\\
+    0 &\text{if } _i w^T x_i \geq 1\\
     -y_i x_i &\text{otherwise}
-\end{cases}$
-
-\subsection*{L1-SVM}
-SVM with feature selection ($l_1$ loss).\\
-$w^* = \underset{w}{\operatorname{argmin}} ~ \lambda||w||_1 + l_H(w;x_i,y_i)$
+\end{cases}$\\
+$w^* = \underset{w}{\operatorname{argmin}} ~ \lambda||w||_2^2 + l_H(w;x_i,y_i)$\\ For L1-SVM (feature selection) use $||w||_1$ 
