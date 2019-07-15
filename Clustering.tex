@@ -1,16 +1,13 @@
 \section*{Clustering}
 \subsection*{k-mean}
 
-$\hat{R}(\mu) = \hat{R}(\mu_1,...,\mu_k) = \sum_{i=1}^n \underset{j\in\{1,...k\}}{\operatorname{min}}||x_i-\mu_j||_2^2$\\
-$\hat{\mu} =  \underset{\mu}{\operatorname{argmin}} \hat{R}(\mu)$\\
-Algorithm (Lloyd's heuristic):\\
-Initialize cluster centers $\mu^{(0)} = [\mu_1^{(0)},...,\mu_k^{(0)}]$\\
-While not converged\\
-$z_i \leftarrow arg \underset{j\in\{1,...,k\}}{min}||x_i - \mu_j^{(t-1)}||_2^2$; $\mu_j^{(t)} \leftarrow \frac{1}{n_j}\sum_{i:z_i=j}x_i$
+$\hat{R}(\mu) = \sum_{i=1}^n \underset{j\in\{1,...k\}}{\operatorname{min}}||x_i-\mu_j||_2^2$\\
+$\hat{\mu} =  \underset{\mu}{\operatorname{argmin}} ~ \hat{R}(\mu)$ ...non-convex, NP-hard \\
+Algorithm (Lloyd's heuristic): Choose starting centers, assign points to closest center, update centers to mean of each cluster, repeat
 
-\subsection*{k-mean++}
-- Start with random data point as center\\
-- Add centers 2 to k randomly, proportionally to squared distance to closest selected center\\
-for $j=2$ to $k$:
-$i_j$ sampled with prob.\\
-$P(i_j=i) = \frac{1}{z} \underset{1\leq l<j}{min}||x_i-\mu_l||_2^2$; $\mu_j \leftarrow x_{i_j}$
+%\subsection*{k-mean++}
+%- Start with random data point as center\\
+%- Add centers 2 to k randomly, proportionally to squared distance to closest selected center\\
+%for $j=2$ to $k$:
+%$i_j$ sampled with prob.\\
+%$P(i_j=i) = \frac{1}{z} \underset{1\leq l<j}{min}||x_i-\mu_l||_2^2$; $\mu_j \leftarrow x_{i_j}$

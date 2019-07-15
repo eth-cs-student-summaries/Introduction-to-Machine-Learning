@@ -1,18 +1,15 @@
-\section{Dimension Reduction}
+\section*{Dimension Reduction}
 \subsection*{PCA}
-
-Given: $D={x_1,...,x_n} \subset \mathbb{R}^d$, $1\leq k \leq d$\\
-$\Sigma_{d \times d} = \frac{1}{n}\sum_{i=1}^n x_i x_i^T$, $\mu =\frac{1}{n}\sum_{i = 1}^n x_i = 0$\\
-Sol.:
-$(W,z_1,...,z_n) = argmin \sum_{i=1}^n||W z_i - x_i||_2^2$,\\
-where $W \in \mathbb{R}^{d \times k}$ is orthogonal, $z_1,...,z_n\in\mathbb{R}^k$ is given by $W = (v_1|...|v_k)$ and $z_i = W^T x_i$ where $\Sigma = \sum_{i=1}^d \lambda_i v_i v_i^T$, $\lambda_1 \geq ... \geq \lambda_d \geq 0$
+$D={x_1,...,x_n} \subset \mathbb{R}^d$,
+$\Sigma = \frac{1}{n}\sum_{i=1}^n x_i x_i^T$, $\mu = 0$\\
+$(W,z_1,...,z_n) = \operatorname{argmin} \sum_{i=1}^n||W z_i - x_i||_2^2$,\\
+$W = (v_1|...|v_k) \in \mathbb{R}^{d \times k}$, orthogonal; $z_i = W^T x_i$ \\ 
+$v_i$ are the eigen vectors of $\Sigma$
 
 \subsection*{Kernel PCA}
-For general $k\geq1$, the Kernel PC are given by $\alpha^{(1)},...,\alpha^{(k)}\in \mathbb{R}^n$, where $\alpha^{(i)} = \frac{1}{\sqrt{\lambda_i}}v_i$ is obtained from: $K = \sum_{i=1}^n \lambda_i v_i v_i^T$, $\lambda_1 \geq ... \geq \lambda_d \geq 0$\\
-Given this, a new point $x$ is projected as $z \in \mathbb{R}^k$:\\
-$z_i = \sum_{j=1}^n\alpha_j^{(i)}k(x,x_j)$
+Kernel PC: $\alpha^{(1)},...,\alpha^{(k)}\in \mathbb{R}^n$, $\alpha^{(i)} = \frac{1}{\sqrt{\lambda_i}}v_i$, $K = \sum_{i=1}^n \lambda_i v_i v_i^T$, $\lambda_1 \geq ... \geq \lambda_d \geq 0$\\
+New point: $\hat{z} = f(\hat{x}) = \sum_{j=1}^n\alpha_j^{(i)}k(\hat{x},x_j)$
 
 \subsection*{Autoencoders}
-Try to learn identity function: $x \approx f(x;\theta)$\\
-$f(x;\theta) = f_2(f_1(x;\theta_1);\theta_2)$; $f_1:$ en-, $f_2:$ decoder\\
-Training: $ \underset{w}{\operatorname{min}}\sum_{i=1}^n||x_i-f(x_i;W)||_2^2$
+Find identity function: $x \approx f(x;\theta)$\\
+$f(x;\theta) = f_{decode}(f_{encode}(x;\theta_{encode});\theta_{decode})$
