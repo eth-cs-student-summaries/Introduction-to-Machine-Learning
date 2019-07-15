@@ -1,12 +1,20 @@
 \section*{Bayesian decision theory}
-Given:\\
 - Conditional distribution over labels $P(y|x)$\\
 - Set of actions $\mathcal{A}$\\
 - Cost function $C:Y\times \mathcal{A} \rightarrow \mathbb{R}$\\
-Pick action that minimizes the expected cost:
-$a^* = \underset{a \in \mathcal{A}}{\operatorname{argmin}} \mathbb{E}_y[C(y,a)|x] = \underset{a \in \mathcal{A}}{\operatorname{argmin}} \sum_y P(y|x) \cdot C(y,a)$ 
-\subsection*{Optimal decision for logistic regression}
-$a^* = \underset{y}{argmax} \hat{P}(y|x) = sign(w^T x)$
+$a^* = \underset{a \in \mathcal{A}}{\operatorname{argmin}} ~ \mathbb{E}[C(y,a)|x]$\\
+Calculate $\mathbb{E}$ via sum/integral.\\
+\emph{Classification}: $C(y,a) = [y \not = a]$; asymmetric: \\
+$C(y,a) =
+ \begin{cases}
+ 	c_{FP} \text{ , if $y=-1$, $a=+1$}\\
+		c_{FN} \text{ , if $y=+1$, $a=-1$}\\
+		0 \text{ , otherwise}
+ \end{cases}$\\
+ \emph{Regression}:  $C(y,a) = (y-a)^2$; asymmetric: $C(y,a) = c_1 \max(y-a,0) + c_2 \max(a-y,0)$
+
+%\subsection*{Optimal decision for logistic regression}
+%$a^* = \underset{y}{argmax} \hat{P}(y|x) = sign(w^T x)$
 
 % \subsection*{Example: logistic regression}
 % \begin{itemize}
@@ -42,32 +50,32 @@ $a^* = \underset{y}{argmax} \hat{P}(y|x) = sign(w^T x)$
 %$C_- = \mathbb{E}_y[C(y,-1)|x] = P(y=+1|x) \cdot c_{FN} + P(y=-1|x) \cdot 0$\\
 %Predict +1 if $C_+ \leq C_- \Leftrightarrow P(y=+1|x) \geq \frac{c_{FP}}{c_{FP} + c_{FN}}$
 
-\subsection*{Doubtful logistic regression}
-	 Est. cond. distr.: $\hat{P}(y|x) = Ber(y;\sigma(\hat{w}^Tx))$\\
-	 Action set: $\mathcal{A} = \{ +1, -1, D\}$;  Cost function:\\
-	 $C(y,a) = \begin{cases}
-			[y \neq a] &\text{if } a \in \{+1,-1\}\\
-			c &\text{if } a = D
-       \end{cases}$\\
-The action that minimizes the expected cost\\
-$a^* = y \text{ if } \hat{P}(y|x) \geq 1-c\text{, D otherwise}$
+%\subsection*{Doubtful logistic regression}
+%	 Est. cond. distr.: $\hat{P}(y|x) = Ber(y;\sigma(\hat{w}^Tx))$\\
+%	 Action set: $\mathcal{A} = \{ +1, -1, D\}$;  Cost function:\\
+%	 $C(y,a) = \begin{cases}
+%			[y \neq a] &\text{if } a \in \{+1,-1\}\\
+%			c &\text{if } a = D
+%       \end{cases}$\\
+%The action that minimizes the expected cost\\
+%$a^* = y \text{ if } \hat{P}(y|x) \geq 1-c\text{, D otherwise}$
 %$a^* = \begin{cases}
 %		y &\hat{P}(y|x) \geq 1-c\\
 %		D &\text{otherwise}
 %	   \end{cases}
 %$
 
-\subsection*{Least squares regression}
-	 Est. cond. distr.: $\hat{P}(y|x,w) = \mathcal{N}(y;w^Tx, \sigma^2)$\\
- $\mathcal{A} = \mathbb{R}$; $C(y,a) = (y-a)^2$\\
-The action that minimizes the expected cost\\
-$a^* = \mathbb{E}_y[y|x] = \int \hat{P}(y | x) \partial y = \hat{w}^Tx$
+%\subsection*{Least squares regression}
+%	 Est. cond. distr.: $\hat{P}(y|x,w) = \mathcal{N}(y;w^Tx, \sigma^2)$\\
+% $\mathcal{A} = \mathbb{R}$; $C(y,a) = (y-a)^2$\\
+%The action that minimizes the expected cost\\
+%$a^* = \mathbb{E}_y[y|x] = \int \hat{P}(y | x) \partial y = \hat{w}^Tx$
 
-\subsection*{Asymmetric cost for regression}
-	 Est. cond. distr.: $\hat{P}(y|x) = \mathcal{N}(\hat{y};\hat{w}^Tx, \sigma^2)$\\
-	 $\mathcal{A} = \mathbb{R}$; $C(y,a) = c_1 \max(y-a,0) + c_2 \max(a-y,0)$
-Action that minimizes the expected cost:\\
-$a^* = \hat{w}^Tx + \sigma \Phi^{-1} (\frac{c_1}{c_1 + c_2})$, $\Phi$: Gaussian CDF\\
+%\subsection*{Asymmetric cost for regression}
+%	 Est. cond. distr.: $\hat{P}(y|x) = \mathcal{N}(\hat{y};\hat{w}^Tx, \sigma^2)$\\
+%	 $\mathcal{A} = \mathbb{R}$; $C(y,a) = c_1 \max(y-a,0) + c_2 \max(a-y,0)$
+%Action that minimizes the expected cost:\\
+%$a^* = \hat{w}^Tx + \sigma \Phi^{-1} (\frac{c_1}{c_1 + c_2})$, $\Phi$: Gaussian CDF\\
 %$\frac{\partial}{\partial a}$\\
 %$\frac{\partial}{\partial a} \mathbb{E}_y[C(y,a)|x] = \int_{-\infty}^{\infty} C(y,a) P(y | x) dy \overset{!}{=} 0$\\
 %$= -c_1 \int_{a}^{\infty} P(y | x) dy + c_2 \int_{-\infty}^{a} P(y | x) dy$\\
