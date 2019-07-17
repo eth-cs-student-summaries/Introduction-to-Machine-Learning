@@ -1,5 +1,21 @@
 \section*{Useful math}
 
+\subsection*{Probabilities}
+$\mathbb{E}_x[X] = \begin{cases}
+   \int x \cdot p(x) \partial x  & \text{if continuous}\\
+   \sum_x x \cdot p(x) & \text{otherwise}
+  \end{cases}$\\
+$\operatorname{Var}[X] = \mathbb{E}[(X-\mu_X)^2] = \mathbb{E}[X^2] - \mathbb{E}[X]^2$\\
+$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$; $p(Z|X,\theta) = \frac{p(X,Z|\theta)}{p(X|\theta)}$\\
+$P(x,y) = P(x \cap y)= P(y|x) \cdot P(x) = P(x|y) \cdot P(y)$
+
+\subsection*{P-Norm}
+$||x||_p = (\sum_{i=1}^n|x_i|^p)^{\frac{1}{p}}$, $1 \leq p < \infty$
+
+\subsection*{Some gradients}
+$\nabla_x ||x||_2^2 = 2 x$\\
+$f(x) = x^T A x$; $\nabla_x f(x) = (A + A^T) x$
+
 \subsection*{Convex / Jensen's inequality}
 $\text{g(x) convex} \Leftrightarrow g''(x) > 0 \Leftrightarrow x_1,x_2 \in \mathbb{R}, \lambda \in [0,1]: 
 g(\lambda x_1 + (1-\lambda) x_2) \leq \lambda g(x_1) + (1-\lambda) g(x_2)$

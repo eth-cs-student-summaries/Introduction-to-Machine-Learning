@@ -1,48 +1,33 @@
-\section*{Latent: Missing data}
+\section*{Missing data}
 \subsection*{Mixture modeling}
 
-Model each cluster as probability distr. $P(x|\theta_j)$\\
-%Assuming data iid, likelihood is
-data iid, likelih.: $P(D|\theta) = \prod_{i=1}^n \sum_{j=1}^k w_j P(x_i|\theta_j)$\\
-%Choose parameters to minimize negative log l.\\
-$\underset{}{argmin}L(D;\theta) = \underset{}{argmin} - \sum_i log \sum_j w_j P(x_i| \theta_j)$
+Model each c. as probability distr. $P(x|\theta_j)$\\
+$P(D|\theta) = \prod_{i=1}^n \sum_{j=1}^k w_j P(x_i|\theta_j)$\\
+MLE: $\underset{}{\operatorname{argmin}} - _{i=1}^n \operatorname{log} \sum_{j=1}^k w_j P(x_i| \theta_j)$
 
 \subsection*{Gaussian-Mixture Bayes classifiers}
-Estimate class prior $P(y)$; Est. cond. distr. for each class:
+Estimate prior $P(y)$; Est. cond. distr. for each class:
 $P(x|y) = \sum_{j=1}^{k_y} w_j^{(y)} \mathcal{N}(x; \mu_j^{(y)}, \Sigma_j^{(y)})$\\
-$P(y|x) = \frac{1}{P(x)} p(y) \sum_{j=1}^{k_y} w_j^{(y)} \mathcal{N}(x; \mu_j^{(y)}, \Sigma_j^{(y)})$
 
 \subsection*{Hard-EM algorithm}
 Initialize parameters $\theta^{(0)}$\\
-For $t=1,2,...$:
-%p.: point
-E-step: Predict most likely class for each data p.:
+E-step: Predict most likely class for each point:
 $z_i^{(t)} = \underset{z}{\operatorname{argmax}} P(z|x_i, \theta^{(t-1)})\\
 = \underset{z}{\operatorname{argmax}} P(z|\theta^{(t-1)}) P(x_i|z,\theta^{(t-1)})$;\\
 M-step: Compute the MLE as for the Gaussian B. class.: $\theta^{(t)} = \underset{\theta}{\operatorname{argmax}} P(D^{(t)}|\theta)$
 
-\subsection*{Soft-EM algorithm: While not converged}
-E-step: For each i and j calculate $\gamma_j^{(t)}(x_i)$\\
+\subsection*{Soft-EM algorithm}
+E-step: Calc p for each point and cls.: $\gamma_j^{(t)}(x_i)$\\
 M-step: Fit clusters to weighted data points:\\
+$w_j^{(t)} = \frac{1}{n} \sum_{i=1}^n \gamma_j^{(t)} (x_i)$; 
+$\mu_j^{(t)} = \frac{\sum_{i=1}^n \gamma_j^{(t)} (x_i) x_i}{\sum_{i=1}^n \gamma_j^{(t)} (x_i)}\\ %\text{|learning with GMMs } ^t = ^*\\
+\Sigma_j^{(t)} = \frac{\sum_{i=1}^n \gamma_j^{(t)}(x_i) (x_i - \mu_j^{(t)}) (x_i - \mu_j^{(t)})^T}{\sum_{i=1}^n \gamma_j^{(t)}(x_i)}$
 
-$w_j^{(t)} \leftarrow \frac{1}{n} \sum_{i=1}^n \gamma_j^{(t)} (x_i)$;  %\text{|semi-supervised}\\
-$\mu_j^{(t)} \leftarrow \frac{\sum_{i=1}^n \gamma_j^{(t)} (x_i) x_i}{\sum_{i=1}^n \gamma_j^{(t)} (x_i)}\\ %\text{|learning with GMMs } ^t = ^*\\
-\Sigma_j^{(t)} \leftarrow \frac{\sum_{i=1}^n \gamma_j^{(t)}(x_i) (x_i - \mu_j^{(t)}) (x_i - \mu_j^{(t)})^T}{\sum_{i=1}^n \gamma_j^{(t)}(x_i)}$\\ %\text{|}\gamma^{(t) = \gamma}$
-EM for semi-supervised learning with GMMs:\\
-%unlabeled points
-unl. p.: $\gamma_j^{(t)}(x_i) = P(Z=j|x_i, \mu^{(t-1)}, \Sigma^{(t-1)}, w^{(t-1)})$\\
-labeled points with label $y_i$: $\gamma_j^{(t)}(x_i) = [j = y_i]$
+ \subsection*{Soft-EM for semi-supervised learning}
+labeled $y_i$: $\gamma_j^{(t)}(x_i) = [j = y_i]$,
+unlabeled:\\ $\gamma_j^{(t)}(x_i) = P(Z=j|x_i, \mu^{(t-1)}, \Sigma^{(t-1)}, w^{(t-1)})$
 
 %If enough space put this on summary.
-%\subsection*{Log-likelihood}
-%$l(\theta) = log P(\mathcal{D})$\\
-%$=\sum_{\overset{i=1}{y_i=\times}}^n log P(x_i;\theta) + \sum_{\overset{i=1}{y_i\not=\times}}^n log P(x_i,y_i;\theta)$\\
-%$=\sum_{\overset{i=1}{y_i=\times}}^n log \sum_{j=1}^m P(x_i, Y=j;\theta) +$\\
-%$ \sum_{\overset{i=1}{y_i\not=\times}}^n log P(x_i,y_i;\theta)$\\
-%$=\sum_{\overset{i=1}{y_i=\times}}^n log \sum_{j=1}^m P(x_i|Y=j;\theta)P(Y=j;\theta) +$\\
-%$ \sum_{\overset{i=1}{y_i\not=\times}}^n log P(x_i,y_i;\theta)$
-
-%Only until here.
 \iffalse
 \subsection*{Log-likelihood}
 $l(\theta) = log P(\mathcal{D})$ \\
