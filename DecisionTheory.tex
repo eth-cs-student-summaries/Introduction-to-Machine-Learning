@@ -11,7 +11,8 @@ $C(y,a) =
 		c_{FN} \text{ , if $y=+1$, $a=-1$}\\
 		0 \text{ , otherwise}
  \end{cases}$\\
- \emph{Regression}:  $C(y,a) = (y-a)^2$; asymmetric: $C(y,a) = c_1 \max(y-a,0) + c_2 \max(a-y,0)$
+ \emph{Regression}:  $C(y,a) = (y-a)^2$; asymmetric: $C(y,a) = c_1 \max(y-a,0) + c_2 \max(a-y,0)$\\
+E.g. $y \in \{-1,+1\}$, predict $+$ if $c_+ < c_-$, $c_+ = \mathbb{E}(C(y, +1)|x) = P(y = 1|x) \cdot 0 + P(y = -1|x) \cdot c_{FP}$, $c_-$ likewise
 
 %\subsection*{Optimal decision for logistic regression}
 %$a^* = \underset{y}{argmax} \hat{P}(y|x) = sign(w^T x)$

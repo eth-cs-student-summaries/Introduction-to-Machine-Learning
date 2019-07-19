@@ -14,7 +14,10 @@ $||x||_p = (\sum_{i=1}^n|x_i|^p)^{\frac{1}{p}}$, $1 \leq p < \infty$
 
 \subsection*{Some gradients}
 $\nabla_x ||x||_2^2 = 2 x$\\
-$f(x) = x^T A x$; $\nabla_x f(x) = (A + A^T) x$
+$f(x) = x^T A x$; $\nabla_x f(x) = (A + A^T) x$\\
+E.g. $\nabla_w \operatorname{log}(1+\operatorname{exp(-y w^T x)}) = \\
+\frac{1}{1+\operatorname{exp}(-y w^T x)} \cdot \operatorname{exp}(-y w^T x) \cdot (-y x) = \\
+\frac{1}{1 + \operatorname{exp}(y w^T x)} \cdot(-yx)$
 
 \subsection*{Convex / Jensen's inequality}
 $\text{g(x) convex} \Leftrightarrow g''(x) > 0 \Leftrightarrow x_1,x_2 \in \mathbb{R}, \lambda \in [0,1]: 
