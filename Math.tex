@@ -9,6 +9,9 @@ $\operatorname{Var}[X] = \mathbb{E}[(X-\mu_X)^2] = \mathbb{E}[X^2] - \mathbb{E}[
 $P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$; $p(Z|X,\theta) = \frac{p(X,Z|\theta)}{p(X|\theta)}$\\
 $P(x,y) = P(x \cap y)= P(y|x) \cdot P(x) = P(x|y) \cdot P(y)$
 
+\subsection*{Bayes Rule}
+$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$
+
 \subsection*{P-Norm}
 $||x||_p = (\sum_{i=1}^n|x_i|^p)^{\frac{1}{p}}$, $1 \leq p < \infty$
 
@@ -28,8 +31,8 @@ $f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} exp(-\frac{(x-\mu)^2}{2\sigma^2})$
 
 \subsection*{Multivariate Gaussian}
 $\Sigma =$ covariance matrix, $\mu$ = mean\\
-$f(x) = \frac{1}{2\pi \sqrt{|\Sigma|}} e^{- \frac{1}{2} (x-\mu)^T \Sigma^{-1} (x-\mu)}$
-
+$f(x) = \frac{1}{2\pi \sqrt{|\Sigma|}} e^{- \frac{1}{2} (x-\mu)^T \Sigma^{-1} (x-\mu)}$\\
+Empirical: $\Sigma = \frac{1}{n}\sum_{i=1}^n x_i x_i^T$ (needs centered data points)
 
 \subsection*{Positive semi-definite matrices}
 $M \in \mathbb{R}^{n\times n}$ is psd $\Leftrightarrow$\\

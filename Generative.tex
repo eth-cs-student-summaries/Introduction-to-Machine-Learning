@@ -14,7 +14,10 @@ $P(x) = \sum_y P(x,y)$
 MLE for $P(y) = p = \frac{n_+}{n}$\\
 MLE for $P=(x|y) = \mathcal{N}(x_i;\mu_{i,y}, \sigma_{i,y}^2)$:\\
 $\hat{\mu}_{i,y} = \frac{1}{n_y} \sum_{x\in D_{x_i|y}} x$\\
-$\hat{\sigma}_{i,y}^2 = \frac{1}{n_y} \sum_{x\in D_{x_i|y}} (x-\hat{\mu}_{i,y})^2$
+$\hat{\sigma}_{i,y}^2 = \frac{1}{n_y} \sum_{x\in D_{x_i|y}} (x-\hat{\mu}_{i,y})^2$\\
+MLE for Poi.: $\lambda = \operatorname{avg}(x_i) $\\
+$\mathbb{R}^d$: $P(X = x|Y = y) = \prod_{i=1}^dPois(\lambda_y^{(i)},x^{(i)})$
+
 
 \subsection*{Deriving decision rule}
 %In order to predict label y for new point x, use\\
