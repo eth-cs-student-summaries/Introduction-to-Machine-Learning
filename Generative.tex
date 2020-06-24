@@ -12,7 +12,7 @@ $P(x) = \sum_y P(x,y)$
 
 \subsection*{Examples}
 MLE for $P(y) = p = \frac{n_+}{n}$\\
-MLE for $P=(x|y) = \mathcal{N}(x_i;\mu_{i,y}, \sigma_{i,y}^2)$:\\
+MLE for $P(x_i|y) = \mathcal{N}(x_i;\mu_{i,y}, \sigma_{i,y}^2)$:\\
 $\hat{\mu}_{i,y} = \frac{1}{n_y} \sum_{x\in D_{x_i|y}} x$\\
 $\hat{\sigma}_{i,y}^2 = \frac{1}{n_y} \sum_{x\in D_{x_i|y}} (x-\hat{\mu}_{i,y})^2$\\
 MLE for Poi.: $\lambda = \operatorname{avg}(x_i) $\\
