@@ -12,7 +12,7 @@ $P(x) = \sum_y P(x,y)$
 
 \subsection*{Examples}
 MLE for $P(y) = p = \frac{n_+}{n}$\\
-MLE for $P=(x|y) = \mathcal{N}(x_i;\mu_{i,y}, \sigma_{i,y}^2)$:\\
+MLE for $P(x_i|y) = \mathcal{N}(x_i;\mu_{i,y}, \sigma_{i,y}^2)$:\\
 $\hat{\mu}_{i,y} = \frac{1}{n_y} \sum_{x\in D_{x_i|y}} x$\\
 $\hat{\sigma}_{i,y}^2 = \frac{1}{n_y} \sum_{x\in D_{x_i|y}} (x-\hat{\mu}_{i,y})^2$\\
 MLE for Poi.: $\lambda = \operatorname{avg}(x_i) $\\
@@ -27,6 +27,7 @@ $y^* = \underset{y}{\operatorname{amax}} ~ P(y|x) =
 
 \subsection*{Gaussian Bayes Classifier}
 $\hat{P}(x|y) = \mathcal{N}(x ; \hat{\mu}_y, \hat{\Sigma}_y)$\\
+$\hat{P}(Y=y) = \hat{p}_y = \frac{n_y}{n}$\\
 $\hat{\mu}_{y} = \frac{1}{n_y} \sum_{i:y_i=y} x_i \in \mathbb{R}^d$\\
 $\hat{\Sigma}_{y} = \frac{1}{n_y} \sum_{i:y_i=y} (x_i - \hat{\mu}_{y})(x_i-\hat{\mu}_y)^T \in \mathbb{R}^{d \times d}$
 
@@ -35,8 +36,8 @@ Assume: $p = 0.5$; $\hat{\Sigma}_- = \hat{\Sigma}_+ = \hat{\Sigma}$\\
 discriminant function: 
 $f(x) = \operatorname{log} \frac{p}{1-p} + \\
 \frac{1}{2}[\operatorname{log} \frac{|\hat{\Sigma}_-|}{|\hat{\Sigma}_+|}
-+ ((x - \hat{\mu}_-)^T \hat{\Sigma}_-^{-1} (x - \hat{\mu}_-)) - \\
-((x - \hat{\mu}_+)^T \hat{\Sigma}_+^{-1} (x - \hat{\mu}_+))]$\\
++ \left((x - \hat{\mu}_-)^T \hat{\Sigma}_-^{-1} (x - \hat{\mu}_-)\right) - \\
+\left((x - \hat{\mu}_+)^T \hat{\Sigma}_+^{-1} (x - \hat{\mu}_+)\right)]$\\
 Predict: $y = \operatorname{sign}(f(x)) = \operatorname{sign} (w^T x + w_0)$\\
 $w = \hat{\Sigma}^{-1}(\hat{\mu}_+ - \hat{\mu}_-)$; \\
 $w_0 = \frac{1}{2}(\hat{\mu}_-^T\hat{\Sigma}^{-1}\hat{\mu}_- - \hat{\mu}_+^T \hat{\Sigma}^{-1}\hat{\mu}_+)$
