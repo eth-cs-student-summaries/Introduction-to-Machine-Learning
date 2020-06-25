@@ -32,7 +32,7 @@ $f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} exp(-\frac{(x-\mu)^2}{2\sigma^2})$
 \subsection*{Multivariate Gaussian}
 $\Sigma =$ covariance matrix, $\mu$ = mean\\
 $f(x) = \frac{1}{2\pi \sqrt{|\Sigma|}} e^{- \frac{1}{2} (x-\mu)^T \Sigma^{-1} (x-\mu)}$\\
-Empirical: $\Sigma = \frac{1}{n}\sum_{i=1}^n x_i x_i^T$ (needs centered data points)
+Empirical: $\hat{\Sigma} = \frac{1}{n}\sum_{i=1}^n x_i x_i^T$ (needs centered data points)
 
 \subsection*{Positive semi-definite matrices}
 $M \in \mathbb{R}^{n\times n}$ is psd $\Leftrightarrow$\\
