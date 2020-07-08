@@ -37,6 +37,7 @@ Use $\alpha^T k_i$ instead of $w^T x_i$,\\
 use $\alpha^T D_y K D_y \alpha$ instead of $||w||_2^2$\\ 
 $k_i=[y_1 k(x_i,x_1), ..., y_n k(x_i,x_n)]$, $D_y = \operatorname{diag}(y)$\\
 Prediction: $\hat{y} = \operatorname{sign}(\sum_{i=1}^n \alpha_i y_i k(x_i, \hat{x}))$
+SGD update: $\alpha_{t+1} = \alpha_t$, if mispredicted: $\alpha_{t+1,i} = \alpha_{t,i} + \eta_t$ (c.f. updating weights towards mispredicted point)
 
 \subsection*{Kernelized linear regression (KLR)}
 Ansatz: $w^*=\sum_{i = 1}^n \alpha_i x$\\
