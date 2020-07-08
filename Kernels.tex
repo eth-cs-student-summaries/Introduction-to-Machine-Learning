@@ -1,9 +1,11 @@
 \section*{Kernels}
 
+efficient, implicit inner products
+
 \subsection*{Properties of kernel}
 $k: \mathcal{X} \times \mathcal{X} \rightarrow \mathbb{R}$, $k$ must be some inner product (symmetric, positive-definite, linear) for some space $\mathcal{V}$.
-i.e. $k(\mathbf{x}, \mathbf{x'}) = \langle \varphi(\mathbf{x}), \varphi(\mathbf{x'}) \rangle_\mathcal{V}$\\
-$\Rightarrow k$ is symmetric and p.s.d. 
+i.e. $k(\mathbf{x}, \mathbf{x'}) = \langle \varphi(\mathbf{x}), \varphi(\mathbf{x'}) \rangle_\mathcal{V} \overset{Eucl.}{=} \varphi(\mathbf{x})^T \varphi(\mathbf{x'}) $
+and $k(\mathbf{x}, \mathbf{x}') = k(\mathbf{x}', \mathbf{x})$
 
 \subsection*{Kernel matrix}
 $K = 
@@ -22,20 +24,25 @@ Laplacian: $k(x,y) = exp(-||x-y||_1/h)$
 
 \subsection*{Composition rules}
 Valid kernels $k_1, k_2$, also valid kernels:
-$k_1(x,y) + k_2(x,y)$; $k_1(x,y) \cdot k_2(x,y)$; $c \cdot k_1(x,y)$, $c>0$;
+$k_1 + k_2$; $k_1 \cdot k_2$; $c \cdot k_1$, $c>0$;
+$f(k_1)$ if $f$ polynomial with pos. coeffs. or exponential
 
 \subsection*{Reformulating the perceptron}
 
 Ansatz: $w^* \in \operatorname{span}(X) \Rightarrow w = \sum_{j=1}^n \alpha_j y_j x_j$\\
-$\alpha^*= \underset{\alpha \in \mathbb{R}^n}{\operatorname{min}} \frac{1}{n} \sum_{i=1}^n \operatorname{max}(0, - \sum_{j=1}^n \alpha_j y_i,y_j x_i^T x_j)$
+$\alpha^*= \underset{\alpha \in \mathbb{R}^n}{\operatorname{argmin}} \sum_{i=1}^n \operatorname{max}(0, - \sum_{j=1}^n \alpha_j y_i y_j x_i^T x_j)$
 
 \subsection*{Kernelized perceptron and SVM}
 Use $\alpha^T k_i$ instead of $w^T x_i$,\\
 use $\alpha^T D_y K D_y \alpha$ instead of $||w||_2^2$\\ 
 $k_i=[y_1 k(x_i,x_1), ..., y_n k(x_i,x_n)]$, $D_y = \operatorname{diag}(y)$\\
-Prediction: $f(\hat{x}) = \operatorname{sign}(\sum_{i=1}^n \alpha_i y_i k(x_i, \hat{x}))$
+Prediction: $\hat{y} = \operatorname{sign}(\sum_{i=1}^n \alpha_i y_i k(x_i, \hat{x}))$
 
 \subsection*{Kernelized linear regression (KLR)}
 Ansatz: $w^*=\sum_{i = 1}^n \alpha_i x$\\
-$\alpha^*= \underset{\alpha}{\operatorname{argmin}}\frac{1}{n} ||\alpha^T K - y||_2^2 + \lambda \alpha^T K \alpha \\= (K+\lambda I)^{-1} y$\\
-Prediction: $f(\hat{x}) = \sum \limits_{i=1}^n \alpha_i k(x_i,\hat{x})$
+$\alpha^*= \underset{\alpha}{\operatorname{argmin}} ||\alpha^T K - y||_2^2 + \lambda \alpha^T K \alpha \\= (K+\lambda I)^{-1} y$\\
+Prediction: $\hat{y} = \sum \limits_{i=1}^n \alpha_i k(x_i,\hat{x})$
+
+\subsection*{k-NN}
+$y = \operatorname{sign} \big( \sum_{i=1}^n y_i [x_i \text{ among } k \text{ nearest neigh-}$ $\text{bours of } x] \big)$ --
+No weights $\Rightarrow$ no training! But depends on all data :(
