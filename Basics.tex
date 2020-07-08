@@ -12,6 +12,13 @@ Centered data with unit variance:
 $\tilde{x}_{i} = \frac{x_{i}-\hat{\mu}}{\hat{\sigma}}$\\
 $\hat{\mu} = \frac{1}{n}\sum_{i=1}^n x_{i}$, $\hat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n {(x_{i}-\hat{\mu})}^2$ 
 
+\subsection*{Cross-Validation}
+For all models $m$, for all $i \in \{ 1, ..., k \}$ do:\\
+1. Split data: $D = D_{train}^{(i)} ~ \uplus ~ D_{test}^{(i)} $ (Monte-Carlo or k-Fold) \\
+2. Train model: $\hat{w}_{i,m} = \underset{w}{\operatorname{argmin}} ~ \hat{R}_{train}^{(i)} (w)$ \\
+3. Estimate error: $\hat{R}_{m}^{(i)} = \hat{R}_{test}^{(i)} (\hat{w}_{i,m})$ \\
+Select best model: $\hat{m} = \underset{m}{\operatorname{argmin}} ~ \frac{1}{k} \sum_{i=1}^{k} \hat{R}_{m}^{(i)}$
+
 \subsection*{Parametric vs. Nonparametric}
 \emph{Parametric}: have finite set of parameters. 
 e.g. linear regression, linear perceptron\\
