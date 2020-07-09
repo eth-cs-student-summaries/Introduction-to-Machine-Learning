@@ -1,11 +1,12 @@
-\section*{Neural network}
-Parameterize feature map: $\phi(x,\theta)$ instead of $\phi(x)$, usually: $\phi(x,\theta) = \varphi(\theta^T x) = \varphi(z)$\\
-$\Rightarrow w^* = \underset{w, \theta}{\operatorname{argmin}} \sum_{i=1}^n l(y_i; \sum_{j=1}^m w_j \phi(x_i, \theta_j))$
+\section*{Neural networks}
+Parameterize feature map with $\theta$: $\phi(x,\theta) = \varphi(\theta^T x) = \varphi(z)$ (activation function $\varphi$)\\
+$\Rightarrow w^* = \underset{w, \theta}{\operatorname{argmin}} \sum_{i=1}^n l(y_i; \sum_{j=1}^m w_j \phi(x_i, \theta_j))$\\
+$f(x; w, \theta_{1:d}) = \sum_{j=1}^m w_j \varphi(\theta_j^T x) = w^T \varphi(\Theta x)$
 
 \subsection*{Activation functions}
 Sigmoid: $\frac{1}{1+exp(-z)}$,  $\varphi'(z) = (1 - \varphi(z))\cdot\varphi(z)$\\
-Tanh: $\varphi(z) = tanh(z) = \frac{exp(z)-exp(-z)}{exp(z)+exp(-z)}$\\
-ReLu:  $\varphi(z) = max(z,0)$
+tanh: $\varphi(z) = tanh(z) = \frac{exp(z)-exp(-z)}{exp(z)+exp(-z)}$\\
+ReLU:  $\varphi(z) = \max(z,0)$
 
 \subsection*{Predict: forward propagation}
 $v^{(0)} = x$; for $l = 1,...,L-1$: \\
@@ -22,4 +23,4 @@ $\delta_j = \varphi'(z_j) \cdot \sum_{i\in Layer_{l+1}} w_{i,j}\delta_i$,
 $\frac{\partial}{\partial w_{j,i}} = \delta_j v_i$
 
 \subsection*{Learning with momentum}
-$a \leftarrow m \cdot a + \eta_t \nabla_W l(W;y,x)$; $W \leftarrow W - a$
+$a \leftarrow m \cdot a + \eta_t \nabla_W l(W;y,x)$; $W_{t+1} \leftarrow W_t - a$
