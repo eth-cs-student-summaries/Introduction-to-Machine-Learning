@@ -1,4 +1,6 @@
 \section*{Multi-class}
-\subsection*{Hinge loss}
+one-vs-all ($c$), one-vs-one ($\frac{c (c-1)}{2}$), encoding
+
+\subsection*{Multi-class Hinge loss}
 $l_{MC-H}(w^{(1)},...,w^{(c)};x,y) =\\
 \max (0,1+\underset{j\in\{1,\cdots,y-1,y+1,\cdots,c\}}{\max} w^{(j)T} x - w^{(y)T} x)$
