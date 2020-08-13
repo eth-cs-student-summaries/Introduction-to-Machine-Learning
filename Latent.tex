@@ -14,7 +14,7 @@ Initialize parameters $\theta^{(0)}$\\
 E-step: Predict most likely class for each point:
 $z_i^{(t)} = \underset{z}{\operatorname{argmax}} ~ P(z|x_i, \theta^{(t-1)})\\
 = \underset{z}{\operatorname{argmax}} ~ P(z|\theta^{(t-1)}) P(x_i|z,\theta^{(t-1)})$;\\
-M-step: Compute the MLE: $\theta^{(t)} = \underset{\theta}{\operatorname{argmax}} P(D^{(t)}|\theta)$, i.e. $\mu_j^{(t)} = \frac{1}{n_j} \sum_{i: z_i = j x_j}$
+M-step: Compute the MLE: $\theta^{(t)} = \underset{\theta}{\operatorname{argmax}} P(D^{(t)}|\theta)$, i.e. $\mu_j^{(t)} = \frac{1}{n_j} \sum_{i: z_i = j} x_i$
 
 \subsection*{Soft-EM algorithm}
 E-step: Calc p for each point and cls.: $\gamma_j^{(t)}(x_i)$\\
